@@ -7,31 +7,43 @@ import webbrowser
 
 def openLink(url):
     webbrowser.open(url)
+    
 
 class SegurancaApp(tk.Tk):
     def __init__(self):
         super().__init__()
-        
-        self.title("Conscientização em Segurança da Informação")
-        self.geometry("660x660")
-        self.configure(background="lightblue")
+        self.iconbitmap("app.ico")
+        self.title("InfoSegura")
+        self.geometry("663x660")
+        self.configure(background="#1d1e24")
         self.resizable(width= False, height= False)
-        self.logo = PhotoImage(file="background.png")
-        self.image1 = Label(self, image=self.logo, bg="blue")
-        self.image1.grid(row=0, column=0, padx=0, pady=10)
+        
        
+
+        self.logo = PhotoImage(file="background.png")
+        self.image1 = Label(self, image=self.logo, bg= "#1d1e24")
+        self.image1.grid(row=0, column=0, padx=0, pady=0)
+        
+
+
         Button(self, text="Por que devo me preocupar? ", command=self.showPreocupar).grid(row=1, column=0, pady=10)
-        Button(self, text="Iniciar Tutorial", command=self.showTutorial).grid(row=2, column=0, pady=10)
+        Button(self, text="Informações Iniciais", command=self.showTutorial).grid(row=2, column=0, pady=10)
         Button(self, text="Ver Dicas de Segurança", command=self.showDicas).grid(row=3, column=0, pady=10)
         Button(self, text="Faça um Quiz", command=self.showQuiz).grid(row=4, column=0, pady=10)
 
         self.conn = sqlite3.connect('segurancaApp.db')
         self.cursor = self.conn.cursor()
 
+
+
     def showPreocupar(self):
         preocuparWindow = tk.Toplevel(self)
         preocuparWindow.title("Preocupações")
         preocuparWindow.geometry("400x300")
+        preocuparWindow.iconbitmap("app.ico")
+        preocuparWindow.resizable(width= False, height= False)
+
+
         tk.Label(preocuparWindow, text="As ferramentas de segurança da informação são uma forma eficaz de reduzir os riscos de uso indevido de seus dados, tais como:", wraplength=350).pack(pady=10)
         preocuparText = (
             "1. Utilização de senhas e números de cartões de crédito furtados;\n \n"
@@ -43,21 +55,30 @@ class SegurancaApp(tk.Tk):
         )
         tk.Label(preocuparWindow, text=preocuparText, wraplength=350).pack(pady=10)
 
+
+
     def showTutorial(self):
         tutorialWindow = tk.Toplevel(self)
         tutorialWindow.title("Tutorial de Segurança")
         tutorialWindow.geometry("400x400")
+        tutorialWindow.iconbitmap("app.ico")
+        tutorialWindow.resizable(width= False, height= False)
         
+
+
         frame = tk.Frame(tutorialWindow)
         frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
+
+
         tk.Label(frame, text="A segurança da informação é essencial no mundo digital. Veja algumas dicas para proteger seus dados contra roubos:", wraplength=350, justify=tk.LEFT).pack(pady=10)
         tutorialText = (
             "1. Senhas fortes: Use senhas complexas e únicas para cada serviço.\n \n"
             "2. Atualizações: Mantenha seus dispositivos e aplicativos atualizados.\n \n"
             "3. Phishing: Não clique em links suspeitos em emails ou mensagens.\n \n"
             "4. Backup: Faça backup regular dos seus dados importantes.\n \n"
-        )
+            )
+
         tk.Label(frame, text=tutorialText, wraplength=350, justify=tk.LEFT).pack(pady=15)
 
         buttonText = ("Veja algumas dicas sobre segurança da informação.\n  \n" "Fonte: GCFAprendeLivre")
@@ -69,6 +90,10 @@ class SegurancaApp(tk.Tk):
         dicasWindow = tk.Toplevel(self)
         dicasWindow.title("Dicas de Segurança")
         dicasWindow.geometry("400x400")
+
+        dicasWindow.iconbitmap("app.ico")
+        dicasWindow.resizable(width= False, height= False)
+    
 
         frame = tk.Frame(dicasWindow) 
         frame.pack(fill= tk.BOTH, expand= True, padx= 10, pady= 10)
@@ -90,6 +115,9 @@ class SegurancaApp(tk.Tk):
         quizWindow = tk.Toplevel(self)
         quizWindow.title("Quiz de Segurança")
         quizWindow.geometry("600x200")
+        quizWindow.iconbitmap("app.ico")
+        quizWindow.resizable(width= False, height= False)
+    
         
         self.conn = sqlite3.connect('segurancaApp.db')
         self.cursor = self.conn.cursor()
@@ -139,6 +167,12 @@ class SegurancaApp(tk.Tk):
         resultWindow = tk.Toplevel(self)
         resultWindow.title("Resultado do Quiz")
         resultWindow.geometry("400x300")
+        resultWindow.iconbitmap("app.ico")
+        resultWindow.resizable(width= False, height= False)
+    
+
+
+
         tk.Label(resultWindow, text=f'Resultado do quiz: Você acertou {self.score} de {len(self.questions)}', wraplength=350).pack(pady=10)
     
        
